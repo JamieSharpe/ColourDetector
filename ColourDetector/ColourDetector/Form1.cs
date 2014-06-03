@@ -43,7 +43,24 @@ namespace ColourDetector
             panel1.BackColor = c;
 
             string name = "Unknown";
-            foreach (KnownColor kc in Enum.GetValues(typeof(KnownColor)))
+
+            // For shades of grey
+            if (c.R == c.G && c.G == c.B)
+            {
+                string preShade = "";
+                if (c.R < byte.MaxValue / 2)
+                {
+                    preShade = "Dark";
+                }
+                else
+                {
+                    preShade = "Light";
+                }
+                name = preShade + " Shade of Grey";
+            }
+            // For known colours
+            // TODO: load known colours from a file, as this shows some colours as the Windows API colour name.
+            foreach (KnownColor kc in Enum.GetValues(typeof (KnownColor)))
             {
                 Color known = Color.FromKnownColor(kc);
                 if (c.ToArgb() == known.ToArgb())
