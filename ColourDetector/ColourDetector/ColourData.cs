@@ -6,7 +6,8 @@ namespace ColourDetector
 {
     class ColourData
     {
-        List<KeyValuePair<string,string>> knownColours = new List<KeyValuePair<string, string>>();
+        public List<KeyValuePair<string,string>> knownColours = new List<KeyValuePair<string, string>>();
+
         public ColourData()
         {
             if (!this.Load())

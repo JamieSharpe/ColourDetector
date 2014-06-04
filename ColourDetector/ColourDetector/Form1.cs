@@ -15,6 +15,8 @@ namespace ColourDetector
 {
     public partial class Form1 : Form
     {
+        readonly ColourData colours = new ColourData();
+
         [DllImport("user32.dll")]
         static extern bool GetCursorPos(ref Point lpPoint);
 
@@ -59,14 +61,14 @@ namespace ColourDetector
                 }
                 name = preShade + " Shade of Grey";
             }
-            // For known colours
-            // TODO: load known colours from a file, as this shows some colours as the Windows API colour name.
-            foreach (KnownColor kc in Enum.GetValues(typeof (KnownColor)))
+            // Get known colour
+            string colourHex = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+            foreach (KeyValuePair<string,string> colour in this.colours.knownColours)
             {
-                Color known = Color.FromKnownColor(kc);
-                if (c.ToArgb() == known.ToArgb())
+                if (colourHex == colour.Value)
                 {
-                    name = known.Name;
+                    name = colour.Key;
+                    break;
                 }
             }
             textBox1.Text = name;
@@ -75,9 +77,9 @@ namespace ColourDetector
             textBox3.Text = c.G.ToString();
             textBox4.Text = c.B.ToString();
 
-            textBox6.Text = c.R.ToString("X");
-            textBox7.Text = c.G.ToString("X");
-            textBox8.Text = c.B.ToString("X");
+            textBox6.Text = c.R.ToString("X2");
+            textBox7.Text = c.G.ToString("X2");
+            textBox8.Text = c.B.ToString("X2");
 
             textBox9.Text = (Math.Truncate(c.GetSaturation() * 1000) / 1000).ToString();
             textBox10.Text = (Math.Truncate(c.GetHue() * 1000) / 1000).ToString();
