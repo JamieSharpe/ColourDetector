@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
@@ -15,7 +8,7 @@ namespace ColourDetector
 {
     public partial class Form1 : Form
     {
-        readonly ColourData colours = new ColourData();
+        private readonly ColourData colours = new ColourData();
 
         [DllImport("user32.dll")]
         static extern bool GetCursorPos(ref Point lpPoint);
@@ -27,7 +20,6 @@ namespace ColourDetector
         {
             InitializeComponent();
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
