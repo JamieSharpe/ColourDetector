@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,9 +79,9 @@ namespace ColourDetector
             textBox7.Text = c.G.ToString("X");
             textBox8.Text = c.B.ToString("X");
 
-            textBox9.Text = c.GetSaturation().ToString();
-            textBox10.Text = c.GetHue().ToString();
-            textBox11.Text = c.GetBrightness().ToString();
+            textBox9.Text = (Math.Truncate(c.GetSaturation() * 1000) / 1000).ToString();
+            textBox10.Text = (Math.Truncate(c.GetHue() * 1000) / 1000).ToString();
+            textBox11.Text = (Math.Truncate(c.GetBrightness() * 1000) / 1000).ToString();
         }
 
         Bitmap screenPixel = new Bitmap(1, 1, PixelFormat.Format32bppArgb);
