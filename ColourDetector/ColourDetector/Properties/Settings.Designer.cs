@@ -46,5 +46,17 @@ namespace ColourDetector.Properties {
                 this["TopMost"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveColours {
+            get {
+                return ((bool)(this["SaveColours"]));
+            }
+            set {
+                this["SaveColours"] = value;
+            }
+        }
     }
 }

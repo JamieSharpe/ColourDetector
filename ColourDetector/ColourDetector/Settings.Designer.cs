@@ -28,108 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
+            this.numOpacity = new System.Windows.Forms.NumericUpDown();
+            this.lblOpacity = new System.Windows.Forms.Label();
+            this.cbOntop = new System.Windows.Forms.CheckBox();
+            this.lblOntop = new System.Windows.Forms.Label();
+            this.llblInfo = new System.Windows.Forms.LinkLabel();
+            this.lblDivider = new System.Windows.Forms.Label();
+            this.lblSaveCol = new System.Windows.Forms.Label();
+            this.cbSaveCol = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             this.SuspendLayout();
             // 
-            // numericUpDown1
+            // numOpacity
             // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.numOpacity.DecimalPlaces = 2;
+            this.numOpacity.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown1.Location = new System.Drawing.Point(93, 7);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numOpacity.Location = new System.Drawing.Point(93, 7);
+            this.numOpacity.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numOpacity.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(90, 20);
-            this.numericUpDown1.TabIndex = 0;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numOpacity.Name = "numOpacity";
+            this.numOpacity.Size = new System.Drawing.Size(90, 20);
+            this.numOpacity.TabIndex = 0;
+            this.numOpacity.Value = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numOpacity.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
-            // label1
+            // lblOpacity
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Opacity:";
+            this.lblOpacity.AutoSize = true;
+            this.lblOpacity.Location = new System.Drawing.Point(12, 9);
+            this.lblOpacity.Name = "lblOpacity";
+            this.lblOpacity.Size = new System.Drawing.Size(46, 13);
+            this.lblOpacity.TabIndex = 1;
+            this.lblOpacity.Text = "Opacity:";
             // 
-            // checkBox1
+            // cbOntop
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(93, 34);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbOntop.AutoSize = true;
+            this.cbOntop.Location = new System.Drawing.Point(93, 33);
+            this.cbOntop.Name = "cbOntop";
+            this.cbOntop.Size = new System.Drawing.Size(15, 14);
+            this.cbOntop.TabIndex = 2;
+            this.cbOntop.UseVisualStyleBackColor = true;
+            this.cbOntop.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // label2
+            // lblOntop
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Always Ontop:";
+            this.lblOntop.AutoSize = true;
+            this.lblOntop.Location = new System.Drawing.Point(12, 34);
+            this.lblOntop.Name = "lblOntop";
+            this.lblOntop.Size = new System.Drawing.Size(75, 13);
+            this.lblOntop.TabIndex = 3;
+            this.lblOntop.Text = "Always Ontop:";
             // 
-            // linkLabel1
+            // llblInfo
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(57, 11);
-            this.linkLabel1.Location = new System.Drawing.Point(12, 58);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(172, 42);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "This application is open source\nand can be found on this GitHub\npage.";
-            this.linkLabel1.UseCompatibleTextRendering = true;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.llblInfo.AutoSize = true;
+            this.llblInfo.LinkArea = new System.Windows.Forms.LinkArea(57, 11);
+            this.llblInfo.Location = new System.Drawing.Point(12, 76);
+            this.llblInfo.Name = "llblInfo";
+            this.llblInfo.Size = new System.Drawing.Size(172, 42);
+            this.llblInfo.TabIndex = 4;
+            this.llblInfo.TabStop = true;
+            this.llblInfo.Text = "This application is open source\nand can be found on this GitHub\npage.";
+            this.llblInfo.UseCompatibleTextRendering = true;
+            this.llblInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label3
+            // lblDivider
             // 
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(12, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 2);
-            this.label3.TabIndex = 5;
+            this.lblDivider.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDivider.Location = new System.Drawing.Point(12, 70);
+            this.lblDivider.Name = "lblDivider";
+            this.lblDivider.Size = new System.Drawing.Size(171, 2);
+            this.lblDivider.TabIndex = 5;
+            // 
+            // lblSaveCol
+            // 
+            this.lblSaveCol.AutoSize = true;
+            this.lblSaveCol.Location = new System.Drawing.Point(12, 54);
+            this.lblSaveCol.Name = "lblSaveCol";
+            this.lblSaveCol.Size = new System.Drawing.Size(73, 13);
+            this.lblSaveCol.TabIndex = 7;
+            this.lblSaveCol.Text = "Save Colours:";
+            // 
+            // cbSaveCol
+            // 
+            this.cbSaveCol.AutoSize = true;
+            this.cbSaveCol.Location = new System.Drawing.Point(93, 53);
+            this.cbSaveCol.Name = "cbSaveCol";
+            this.cbSaveCol.Size = new System.Drawing.Size(15, 14);
+            this.cbSaveCol.TabIndex = 6;
+            this.cbSaveCol.UseVisualStyleBackColor = true;
+            this.cbSaveCol.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(195, 107);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericUpDown1);
+            this.ClientSize = new System.Drawing.Size(195, 122);
+            this.Controls.Add(this.lblSaveCol);
+            this.Controls.Add(this.cbSaveCol);
+            this.Controls.Add(this.lblDivider);
+            this.Controls.Add(this.llblInfo);
+            this.Controls.Add(this.lblOntop);
+            this.Controls.Add(this.cbOntop);
+            this.Controls.Add(this.lblOpacity);
+            this.Controls.Add(this.numOpacity);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
+            this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.Load += new System.EventHandler(this.Settings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,11 +167,13 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numOpacity;
+        private System.Windows.Forms.Label lblOpacity;
+        private System.Windows.Forms.CheckBox cbOntop;
+        private System.Windows.Forms.Label lblOntop;
+        private System.Windows.Forms.LinkLabel llblInfo;
+        private System.Windows.Forms.Label lblDivider;
+        private System.Windows.Forms.Label lblSaveCol;
+        private System.Windows.Forms.CheckBox cbSaveCol;
     }
 }

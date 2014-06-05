@@ -12,25 +12,34 @@ namespace ColourDetector
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            numericUpDown1.Value = Properties.Settings.Default.Opacity;
-            checkBox1.Checked = Properties.Settings.Default.TopMost;
+            numOpacity.Value = Properties.Settings.Default.Opacity;
+            cbOntop.Checked = Properties.Settings.Default.TopMost;
+            cbSaveCol.Checked = Properties.Settings.Default.SaveColours;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Opacity = numericUpDown1.Value;
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Opacity = numOpacity.Value;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.TopMost = checkBox1.Checked;
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.TopMost = cbOntop.Checked;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SaveColours = cbSaveCol.Checked;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
+        }
+
+        private void Settings_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }
