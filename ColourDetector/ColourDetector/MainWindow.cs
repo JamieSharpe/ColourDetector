@@ -15,6 +15,12 @@ namespace ColourDetector
             InitializeComponent();
         }
 
+        private void LoadSettings()
+        {
+            this.Opacity = (double)Properties.Settings.Default.Opacity;
+            this.TopMost = Properties.Settings.Default.TopMost;
+        }
+
         /// <summary>
         /// Called when the form is loaded.
         /// Binds the UI components to the detector.
@@ -24,6 +30,8 @@ namespace ColourDetector
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.LoadSettings();
+
             pnlColourView.DataBindings.Add("BackColor", detector, "Colour",
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);

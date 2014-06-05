@@ -13,6 +13,7 @@ namespace ColourDetector
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Settings());
             Application.Run(new MainWindow());
         }
     }
