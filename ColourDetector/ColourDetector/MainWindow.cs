@@ -19,6 +19,7 @@ namespace ColourDetector
         {
             this.Opacity = (double)Properties.Settings.Default.Opacity;
             this.TopMost = Properties.Settings.Default.TopMost;
+            this.tmrUpdate.Interval = Properties.Settings.Default.UpdateFreq;
         }
 
         /// <summary>
@@ -83,8 +84,7 @@ namespace ColourDetector
             tbColourBri.DataBindings.Add("Text", detector, "Brightness",
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
-            
-            tmrUpdate.Interval = 100;
+           
             tmrUpdate.Start();
         }
 

@@ -58,5 +58,17 @@ namespace ColourDetector.Properties {
                 this["SaveColours"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int UpdateFreq {
+            get {
+                return ((int)(this["UpdateFreq"]));
+            }
+            set {
+                this["UpdateFreq"] = value;
+            }
+        }
     }
 }
