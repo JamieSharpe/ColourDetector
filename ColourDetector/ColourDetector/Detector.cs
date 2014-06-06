@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -19,6 +20,7 @@ namespace ColourDetector
 
         private Point mousePos;
         private Color colour;
+        private Image screenShot = new Bitmap(25, 25, PixelFormat.Format32bppArgb);
         private readonly ColourData allColours = new ColourData();
         #endregion Fields
 
@@ -143,6 +145,20 @@ namespace ColourDetector
                 OnPropertyChanged("Colour");
             }
         }
+
+        public Image ScreenShot
+        {
+            get
+            {
+                return this.screenShot;
+            }
+
+            set
+            {
+                this.screenShot = value;
+                this.OnPropertyChanged("ScreenShot");
+            }
+        }
         #endregion Properties
 
         #region ImportedMethods
@@ -167,6 +183,8 @@ namespace ColourDetector
             this.Saturation = this.Colour.GetSaturation();
             this.Hue = this.Colour.GetHue();
             this.Brightness = this.Colour.GetBrightness();
+
+            this.GetScreenShot(MousePos);
         }
 
         /// <summary>
@@ -223,6 +241,35 @@ namespace ColourDetector
                 }
             }
             this.colourName = name;
+        }
+
+        /// <summary>
+        /// Gets a zoomed in screenshot of the area
+        /// and draws a crosshair on it.
+        /// </summary>
+        /// <param name="location"></param>
+        private void GetScreenShot(Point location)
+        {
+            Bitmap capture = new Bitmap(116 / 8, 116 / 8, PixelFormat.Format32bppArgb);
+            using (Graphics gdest = Graphics.FromImage(capture))
+            {
+                using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
+                {
+                    IntPtr hSrcDC = gsrc.GetHdc();
+                    IntPtr hDC = gdest.GetHdc();
+                    int retval = NativeMethods.BitBlt(hDC, 0, 0, 116 / 8, 116 / 8, hSrcDC, location.X - 116 / 16, location.Y - 116 / 16, (int)CopyPixelOperation.SourceCopy);
+                    gdest.ReleaseHdc();
+                    gsrc.ReleaseHdc();
+                }
+            }
+            Bitmap b = new Bitmap(116, 116, PixelFormat.Format32bppArgb);
+            Graphics g = Graphics.FromImage(b);
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            g.DrawImage(capture, 0, 0, 116, 116);
+            Pen p = new Pen(Color.Black);
+            g.DrawLine(p, 116 / 2, 0, 116 / 2, 110);
+            g.DrawLine(p, 0, 116 / 2, 110, 116 / 2);
+            this.ScreenShot = b;
         }
         #endregion Methods
 

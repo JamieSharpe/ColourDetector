@@ -63,10 +63,12 @@
             this.btnColourSel = new System.Windows.Forms.Button();
             this.cdiagColour = new System.Windows.Forms.ColorDialog();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbColour.SuspendLayout();
             this.gbColourX.SuspendLayout();
             this.gbColourInfo.SuspendLayout();
             this.gbMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tmrUpdate
@@ -351,11 +353,22 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(470, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.pictureBox1.Size = new System.Drawing.Size(116, 116);
+            this.pictureBox1.TabIndex = 32;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 166);
+            this.ClientSize = new System.Drawing.Size(599, 166);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnColourSel);
             this.Controls.Add(this.gbMouse);
@@ -381,6 +394,7 @@
             this.gbColourInfo.PerformLayout();
             this.gbMouse.ResumeLayout(false);
             this.gbMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,6 +435,7 @@
         private System.Windows.Forms.Button btnColourSel;
         private System.Windows.Forms.ColorDialog cdiagColour;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

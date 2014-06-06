@@ -84,7 +84,11 @@ namespace ColourDetector
             tbColourBri.DataBindings.Add("Text", detector, "Brightness",
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
-           
+
+            pictureBox1.DataBindings.Add("Image", detector, "Screenshot",
+                                false,
+                                DataSourceUpdateMode.OnPropertyChanged);
+
             tmrUpdate.Start();
         }
 
