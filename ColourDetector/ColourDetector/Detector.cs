@@ -146,11 +146,6 @@ namespace ColourDetector
         #endregion Properties
 
         #region ImportedMethods
-        [DllImport("user32.dll")]
-        static extern bool GetCursorPos(ref Point lpPoint);
-
-        [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
-        public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
         #endregion ImportedMethods
 
         #region Methods
@@ -159,7 +154,7 @@ namespace ColourDetector
         /// </summary>
         public void Update()
         {
-            GetCursorPos(ref mousePos);
+            NativeMethods.GetCursorPos(ref mousePos);
 
             this.Colour = GetColorAt(MousePos);
 
@@ -188,7 +183,7 @@ namespace ColourDetector
                 {
                     IntPtr hSrcDC = gsrc.GetHdc();
                     IntPtr hDC = gdest.GetHdc();
-                    int retval = BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
+                    int retval = NativeMethods.BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
                 }

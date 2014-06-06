@@ -25,7 +25,10 @@ namespace ColourDetector
             if (!this.Load())
             {
                 this.AddColours();
-                this.Save();
+                if (Properties.Settings.Default.SaveColours)
+                {
+                    this.Save();
+                }
             }
         }
 

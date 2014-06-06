@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.tbColourName = new System.Windows.Forms.TextBox();
             this.pnlColourView = new System.Windows.Forms.Panel();
@@ -61,6 +62,7 @@
             this.gbMouse = new System.Windows.Forms.GroupBox();
             this.btnColourSel = new System.Windows.Forms.Button();
             this.cdiagColour = new System.Windows.Forms.ColorDialog();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.gbColour.SuspendLayout();
             this.gbColourX.SuspendLayout();
             this.gbColourInfo.SuspendLayout();
@@ -69,7 +71,7 @@
             // 
             // tmrUpdate
             // 
-            this.tmrUpdate.Tick += new System.EventHandler(this.timer1_Tick);
+            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
             // 
             // tbColourName
             // 
@@ -82,7 +84,7 @@
             // 
             this.pnlColourView.Location = new System.Drawing.Point(12, 12);
             this.pnlColourView.Name = "pnlColourView";
-            this.pnlColourView.Size = new System.Drawing.Size(113, 113);
+            this.pnlColourView.Size = new System.Drawing.Size(116, 116);
             this.pnlColourView.TabIndex = 1;
             // 
             // lblName
@@ -280,7 +282,7 @@
             this.gbColour.Controls.Add(this.lblColourB);
             this.gbColour.Location = new System.Drawing.Point(134, 57);
             this.gbColour.Name = "gbColour";
-            this.gbColour.Size = new System.Drawing.Size(104, 97);
+            this.gbColour.Size = new System.Drawing.Size(104, 100);
             this.gbColour.TabIndex = 26;
             this.gbColour.TabStop = false;
             this.gbColour.Text = "RGB";
@@ -295,7 +297,7 @@
             this.gbColourX.Controls.Add(this.lblColourBX);
             this.gbColourX.Location = new System.Drawing.Point(244, 57);
             this.gbColourX.Name = "gbColourX";
-            this.gbColourX.Size = new System.Drawing.Size(101, 97);
+            this.gbColourX.Size = new System.Drawing.Size(101, 100);
             this.gbColourX.TabIndex = 27;
             this.gbColourX.TabStop = false;
             this.gbColourX.Text = "RGB Hex";
@@ -310,7 +312,7 @@
             this.gbColourInfo.Controls.Add(this.lblColourBri);
             this.gbColourInfo.Location = new System.Drawing.Point(351, 57);
             this.gbColourInfo.Name = "gbColourInfo";
-            this.gbColourInfo.Size = new System.Drawing.Size(116, 97);
+            this.gbColourInfo.Size = new System.Drawing.Size(116, 100);
             this.gbColourInfo.TabIndex = 28;
             this.gbColourInfo.TabStop = false;
             this.gbColourInfo.Text = "Info";
@@ -330,19 +332,31 @@
             // 
             // btnColourSel
             // 
-            this.btnColourSel.Location = new System.Drawing.Point(12, 131);
+            this.btnColourSel.Location = new System.Drawing.Point(12, 134);
             this.btnColourSel.Name = "btnColourSel";
             this.btnColourSel.Size = new System.Drawing.Size(87, 23);
             this.btnColourSel.TabIndex = 30;
             this.btnColourSel.Text = "Colour Selector";
             this.btnColourSel.UseVisualStyleBackColor = true;
-            this.btnColourSel.Click += new System.EventHandler(this.button1_Click);
+            this.btnColourSel.Click += new System.EventHandler(this.btnColourSel_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSettings.BackgroundImage")));
+            this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSettings.Location = new System.Drawing.Point(105, 134);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(23, 23);
+            this.btnSettings.TabIndex = 31;
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 166);
+            this.ClientSize = new System.Drawing.Size(475, 166);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnColourSel);
             this.Controls.Add(this.gbMouse);
             this.Controls.Add(this.gbColourInfo);
@@ -353,11 +367,12 @@
             this.Controls.Add(this.tbColourName);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Colour Detector";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.gbColour.ResumeLayout(false);
             this.gbColour.PerformLayout();
             this.gbColourX.ResumeLayout(false);
@@ -405,6 +420,7 @@
         private System.Windows.Forms.GroupBox gbMouse;
         private System.Windows.Forms.Button btnColourSel;
         private System.Windows.Forms.ColorDialog cdiagColour;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
 
