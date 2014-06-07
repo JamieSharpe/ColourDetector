@@ -146,14 +146,16 @@ namespace ColourDetector
             }
         }
 
+        /// <summary>
+        /// Gets/Sets the Screenshot.
+        /// </summary>
         public Image ScreenShot
         {
             get
             {
                 return this.screenShot;
             }
-
-            set
+            private set
             {
                 this.screenShot = value;
                 this.OnPropertyChanged("ScreenShot");
