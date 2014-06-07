@@ -89,6 +89,7 @@ namespace ColourDetector
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
 
+            comboBox1.DataSource = detector.ZoomLevels;
             tmrUpdate.Start();
         }
 
@@ -117,6 +118,11 @@ namespace ColourDetector
             Settings s = new Settings();
             s.ShowDialog();
             this.LoadSettings();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            detector.ZoomLevel = (int)comboBox1.SelectedItem;
         }
     }
 }

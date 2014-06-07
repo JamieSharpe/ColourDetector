@@ -17,11 +17,14 @@ namespace ColourDetector
         private double hue;
         private double brightness;
         private string colourName;
+        private int zoomLevel = 8;
 
         private Point mousePos;
         private Color colour;
         private Image screenShot = new Bitmap(25, 25, PixelFormat.Format32bppArgb);
         private readonly ColourData allColours = new ColourData();
+
+        public readonly int[] ZoomLevels = {8, 16, 32};
         #endregion Fields
 
         #region Properties
@@ -123,6 +126,28 @@ namespace ColourDetector
         }
 
         /// <summary>
+        /// Gets/Sets the Zoom Level.
+        /// </summary>
+        public int ZoomLevel
+        {
+            get { return this.zoomLevel; }
+            set
+            {
+                switch (value)
+                {
+                    case 8:
+                    case 16:
+                    case 32:
+                        this.zoomLevel = value;
+                        break;
+                    default:
+                        this.zoomLevel = 8;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the Mouse Position
         /// </summary>
         public Point MousePos
@@ -173,7 +198,7 @@ namespace ColourDetector
 
             // 120 is the size of the Image panel window.
             // 8 16 32 work for best zoom levels
-            this.GetCapture(MousePos, 120, 120, 8);
+            this.GetCapture(MousePos, 120, 120, this.zoomLevel);
 
             this.GetColourName();
 
@@ -217,10 +242,6 @@ namespace ColourDetector
             g.DrawImage(capture, 0, 0, width, height);
             // Draw crosshair
             Pen p = new Pen(Color.Black);
-            //g.DrawLine(p, width / 2, 0, width / 2, height - 6);
-            //g.DrawLine(p, 0, height / 2, width - 6, height / 2);
-            //g.DrawLine(p, width / 2 - 4, 0, width / 2 - 4, height);
-            //g.DrawLine(p, 0, height / 2 - 4, width, height / 2 - 4);
             g.DrawLine(p, width / 2 - (scale /2), 0, width / 2 - (scale/2), height);
             g.DrawLine(p, 0, height / 2 - (scale/2), width, height / 2 - (scale/2));
             this.ScreenShot = scaled;
