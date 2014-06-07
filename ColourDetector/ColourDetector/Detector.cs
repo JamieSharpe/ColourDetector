@@ -220,14 +220,13 @@ namespace ColourDetector
         /// <returns>Color</returns>
         private void GetCapture(Point location, int width, int height, int scale)
         {
-            Bitmap capture = new Bitmap(width / scale, height / scale, PixelFormat.Format32bppArgb);
+            Bitmap capture = new Bitmap(width / scale -1, height / scale -1, PixelFormat.Format32bppArgb);
             using (Graphics gdest = Graphics.FromImage(capture))
             {
                 using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
                 {
                     IntPtr hSrcDC = gsrc.GetHdc();
                     IntPtr hDC = gdest.GetHdc();
-                    //int retval = NativeMethods.BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
                     int retval = NativeMethods.BitBlt(hDC, 0, 0, width / scale, height / scale, hSrcDC, location.X - width / (scale * 2), location.Y - height / (scale * 2), (int)CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
@@ -241,8 +240,8 @@ namespace ColourDetector
             g.DrawImage(capture, 0, 0, width, height);
             // Draw crosshair
             Pen p = new Pen(Color.Black);
-            g.DrawLine(p, width / 2 - (scale /2), 0, width / 2 - (scale/2), height);
-            g.DrawLine(p, 0, height / 2 - (scale/2), width, height / 2 - (scale/2));
+            g.DrawLine(p, width / 2, 0, width / 2, height);
+            g.DrawLine(p, 0, height / 2, width, height / 2);
             this.ScreenShot = scaled;
         }
 
