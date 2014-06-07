@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace ColourDetector
 {
+    /// <summary>
+    /// The Main Window Form.
+    /// </summary>
     public partial class MainWindow : Form
     {
         readonly private Detector detector = new Detector();
@@ -85,11 +88,11 @@ namespace ColourDetector
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
 
-            pictureBox1.DataBindings.Add("Image", detector, "Screenshot",
+            pbZoom.DataBindings.Add("Image", detector, "Screenshot",
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
 
-            comboBox1.DataSource = detector.ZoomLevels;
+            cbZoomLevel.DataSource = detector.ZoomLevels;
             tmrUpdate.Start();
         }
 
@@ -120,9 +123,9 @@ namespace ColourDetector
             this.LoadSettings();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbZoomLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            detector.ZoomLevel = (int)comboBox1.SelectedItem;
+            detector.ZoomLevel = (int)cbZoomLevel.SelectedItem;
         }
     }
 }

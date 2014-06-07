@@ -63,13 +63,14 @@
             this.btnColourSel = new System.Windows.Forms.Button();
             this.cdiagColour = new System.Windows.Forms.ColorDialog();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.pbZoom = new System.Windows.Forms.PictureBox();
+            this.cbZoomLevel = new System.Windows.Forms.ComboBox();
+            this.lblZoom = new System.Windows.Forms.Label();
             this.gbColour.SuspendLayout();
             this.gbColourX.SuspendLayout();
             this.gbColourInfo.SuspendLayout();
             this.gbMouse.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoom)).BeginInit();
             this.SuspendLayout();
             // 
             // tmrUpdate
@@ -354,30 +355,40 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // pictureBox1
+            // pbZoom
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(473, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(116, 116);
-            this.pictureBox1.TabIndex = 32;
-            this.pictureBox1.TabStop = false;
+            this.pbZoom.Location = new System.Drawing.Point(473, 12);
+            this.pbZoom.Name = "pbZoom";
+            this.pbZoom.Size = new System.Drawing.Size(116, 116);
+            this.pbZoom.TabIndex = 32;
+            this.pbZoom.TabStop = false;
             // 
-            // comboBox1
+            // cbZoomLevel
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(474, 134);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 21);
-            this.comboBox1.TabIndex = 33;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cbZoomLevel.FormattingEnabled = true;
+            this.cbZoomLevel.Location = new System.Drawing.Point(545, 136);
+            this.cbZoomLevel.Name = "cbZoomLevel";
+            this.cbZoomLevel.Size = new System.Drawing.Size(44, 21);
+            this.cbZoomLevel.TabIndex = 33;
+            this.cbZoomLevel.SelectedIndexChanged += new System.EventHandler(this.cbZoomLevel_SelectedIndexChanged);
+            // 
+            // lblZoom
+            // 
+            this.lblZoom.AutoSize = true;
+            this.lblZoom.Location = new System.Drawing.Point(473, 139);
+            this.lblZoom.Name = "lblZoom";
+            this.lblZoom.Size = new System.Drawing.Size(66, 13);
+            this.lblZoom.TabIndex = 23;
+            this.lblZoom.Text = "Zoom Level:";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 166);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lblZoom);
+            this.Controls.Add(this.cbZoomLevel);
+            this.Controls.Add(this.pbZoom);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnColourSel);
             this.Controls.Add(this.gbMouse);
@@ -403,7 +414,7 @@
             this.gbColourInfo.PerformLayout();
             this.gbMouse.ResumeLayout(false);
             this.gbMouse.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZoom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,8 +455,9 @@
         private System.Windows.Forms.Button btnColourSel;
         private System.Windows.Forms.ColorDialog cdiagColour;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.PictureBox pbZoom;
+        private System.Windows.Forms.ComboBox cbZoomLevel;
+        private System.Windows.Forms.Label lblZoom;
     }
 }
 

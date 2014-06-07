@@ -12,15 +12,30 @@ namespace ColourDetector
     public class KeyValuePair<TK, TV>
     {
         #region Properties
+        /// <summary>
+        /// Gets/Sets the Key
+        /// </summary>
         public TK Key { get; set; }
+        /// <summary>
+        /// Gets/Sets the Value
+        /// </summary>
         public TV Value { get; set; }
         #endregion Properties
 
         #region Constructors
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <remarks>Required for serialisation.</remarks>
         public KeyValuePair()
         {
         }
 
+        /// <summary>
+        /// Constructor for a key/value.
+        /// </summary>
+        /// <param name="k">Key</param>
+        /// <param name="v">Value</param>
         public KeyValuePair(TK k, TV v)
         {
             this.Key = k;

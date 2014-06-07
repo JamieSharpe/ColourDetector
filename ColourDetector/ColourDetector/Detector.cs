@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -286,7 +285,7 @@ namespace ColourDetector
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Property Changed event so the UI knowns when yo update.
+        /// Property Changed event so the UI knowns when to update.
         /// </summary>
         /// <param name="propertyName">Property being updated.</param>
         private void OnPropertyChanged(string propertyName)

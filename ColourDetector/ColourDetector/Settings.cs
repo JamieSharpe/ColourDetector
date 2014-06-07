@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace ColourDetector
 {
+    /// <summary>
+    /// The Settings Form.
+    /// </summary>
     public partial class Settings : Form
     {
         #region Constructor
