@@ -163,9 +163,6 @@ namespace ColourDetector
         }
         #endregion Properties
 
-        #region ImportedMethods
-        #endregion ImportedMethods
-
         #region Methods
         /// <summary>
         /// Updates all the properties of the current mouse position.
@@ -174,7 +171,9 @@ namespace ColourDetector
         {
             NativeMethods.GetCursorPos(ref mousePos);
 
-            this.Colour = GetColorAt(MousePos);
+            // 120 is the size of the Image panel window.
+            // 8 16 32 work for best zoom levels
+            this.GetCapture(MousePos, 120, 120, 8);
 
             this.GetColourName();
 
@@ -185,30 +184,46 @@ namespace ColourDetector
             this.Saturation = this.Colour.GetSaturation();
             this.Hue = this.Colour.GetHue();
             this.Brightness = this.Colour.GetBrightness();
-
-            this.GetScreenShot(MousePos);
         }
 
         /// <summary>
-        /// Gets the Colour at a Point on the screen.
+        /// Gets the Colour and Screenshot at a Point on the screen.
         /// </summary>
         /// <param name="location">Location on the screen.</param>
+        /// <param name="width">Width of the capture area.</param>
+        /// <param name="height">Height of the capture area.</param>
+        /// <param name="scale">Zoom scale of the captured area.</param>
         /// <returns>Color</returns>
-        public Color GetColorAt(Point location)
+        private void GetCapture(Point location, int width, int height, int scale)
         {
-            Bitmap screenPixel = new Bitmap(1, 1, PixelFormat.Format32bppArgb);
-            using (Graphics gdest = Graphics.FromImage(screenPixel))
+            Bitmap capture = new Bitmap(width / scale, height / scale, PixelFormat.Format32bppArgb);
+            using (Graphics gdest = Graphics.FromImage(capture))
             {
                 using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
                 {
                     IntPtr hSrcDC = gsrc.GetHdc();
                     IntPtr hDC = gdest.GetHdc();
-                    int retval = NativeMethods.BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
+                    //int retval = NativeMethods.BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
+                    int retval = NativeMethods.BitBlt(hDC, 0, 0, width / scale, height / scale, hSrcDC, location.X - width / (scale * 2), location.Y - height / (scale * 2), (int)CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
                 }
             }
-            return screenPixel.GetPixel(0, 0);
+            this.Colour = capture.GetPixel(width / (scale * 2), height / (scale * 2));
+            // Upscale the image with no pixel blending
+            Bitmap scaled = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            Graphics g = Graphics.FromImage(scaled);
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            g.DrawImage(capture, 0, 0, width, height);
+            // Draw crosshair
+            Pen p = new Pen(Color.Black);
+            //g.DrawLine(p, width / 2, 0, width / 2, height - 6);
+            //g.DrawLine(p, 0, height / 2, width - 6, height / 2);
+            //g.DrawLine(p, width / 2 - 4, 0, width / 2 - 4, height);
+            //g.DrawLine(p, 0, height / 2 - 4, width, height / 2 - 4);
+            g.DrawLine(p, width / 2 - (scale /2), 0, width / 2 - (scale/2), height);
+            g.DrawLine(p, 0, height / 2 - (scale/2), width, height / 2 - (scale/2));
+            this.ScreenShot = scaled;
         }
 
         /// <summary>
@@ -243,35 +258,6 @@ namespace ColourDetector
                 }
             }
             this.colourName = name;
-        }
-
-        /// <summary>
-        /// Gets a zoomed in screenshot of the area
-        /// and draws a crosshair on it.
-        /// </summary>
-        /// <param name="location"></param>
-        private void GetScreenShot(Point location)
-        {
-            Bitmap capture = new Bitmap(116 / 8, 116 / 8, PixelFormat.Format32bppArgb);
-            using (Graphics gdest = Graphics.FromImage(capture))
-            {
-                using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
-                {
-                    IntPtr hSrcDC = gsrc.GetHdc();
-                    IntPtr hDC = gdest.GetHdc();
-                    int retval = NativeMethods.BitBlt(hDC, 0, 0, 116 / 8, 116 / 8, hSrcDC, location.X - 116 / 16, location.Y - 116 / 16, (int)CopyPixelOperation.SourceCopy);
-                    gdest.ReleaseHdc();
-                    gsrc.ReleaseHdc();
-                }
-            }
-            Bitmap b = new Bitmap(116, 116, PixelFormat.Format32bppArgb);
-            Graphics g = Graphics.FromImage(b);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(capture, 0, 0, 116, 116);
-            Pen p = new Pen(Color.Black);
-            g.DrawLine(p, 116 / 2, 0, 116 / 2, 110);
-            g.DrawLine(p, 0, 116 / 2, 110, 116 / 2);
-            this.ScreenShot = b;
         }
         #endregion Methods
 

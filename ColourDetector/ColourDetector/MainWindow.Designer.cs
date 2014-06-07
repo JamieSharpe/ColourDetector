@@ -355,10 +355,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(470, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Location = new System.Drawing.Point(473, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(1);
             this.pictureBox1.Size = new System.Drawing.Size(116, 116);
             this.pictureBox1.TabIndex = 32;
             this.pictureBox1.TabStop = false;
@@ -367,7 +365,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 166);
+            this.ClientSize = new System.Drawing.Size(607, 166);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnColourSel);
