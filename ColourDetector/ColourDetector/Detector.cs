@@ -23,7 +23,7 @@ namespace ColourDetector
         private Image screenShot = new Bitmap(25, 25, PixelFormat.Format32bppArgb);
         private readonly ColourData allColours = new ColourData();
 
-        public readonly int[] ZoomLevels = {8, 16, 32};
+        public readonly int[] ZoomLevels = {1, 2, 4, 8, 16, 32};
         #endregion Fields
 
         #region Properties
@@ -134,6 +134,9 @@ namespace ColourDetector
             {
                 switch (value)
                 {
+                    case 1:
+                    case 2:
+                    case 4:
                     case 8:
                     case 16:
                     case 32:
@@ -220,24 +223,55 @@ namespace ColourDetector
         /// <returns>Color</returns>
         private void GetCapture(Point location, int width, int height, int scale)
         {
-            Bitmap capture = new Bitmap(width / scale -1, height / scale -1, PixelFormat.Format32bppArgb);
+            Bitmap capture = new Bitmap(width, height, PixelFormat.Format32bppArgb);
             using (Graphics gdest = Graphics.FromImage(capture))
             {
                 using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
                 {
                     IntPtr hSrcDC = gsrc.GetHdc();
                     IntPtr hDC = gdest.GetHdc();
-                    int retval = NativeMethods.BitBlt(hDC, 0, 0, width / scale, height / scale, hSrcDC, location.X - width / (scale * 2), location.Y - height / (scale * 2), (int)CopyPixelOperation.SourceCopy);
+                    int captureX = width;
+                    int captureY = height;
+                    int locationX = location.X - width/2;
+                    int locationY = location.Y - height/2;
+                    int retval = NativeMethods.BitBlt(hDC, 0, 0, captureX, captureY, hSrcDC, locationX, locationY, (int)CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
                 }
             }
-            this.Colour = capture.GetPixel(width / (scale * 2), height / (scale * 2));
+            this.Colour = capture.GetPixel(width / 2, height / 2);
             // Upscale the image with no pixel blending
             Bitmap scaled = new Bitmap(width, height, PixelFormat.Format32bppArgb);
             Graphics g = Graphics.FromImage(scaled);
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(capture, 0, 0, width, height);
+
+            // TODO: Less hard coded numbers.
+            // (x*2)+60
+            // (y*2)+60
+            switch (scale)
+            {
+                case 1:
+                    g.DrawImage(capture, 0, 0, width * scale, height * scale);
+                    break;
+                case 2:
+                    g.DrawImage(capture, -60, -60, width * scale, height * scale);
+                    break;
+                case 4:
+                    g.DrawImage(capture, -180, -180, width * scale, height * scale);
+                    break;
+                case 8:
+                    g.DrawImage(capture, -420, -420, width * scale, height * scale);
+                    break;
+                case 16:
+                    g.DrawImage(capture, -900, -900, width * scale, height * scale);
+                    break;
+                case 32:
+                    g.DrawImage(capture, -1860, -1860, width * scale, height * scale);
+                    break;
+                default:
+                    g.DrawImage(capture, 0, 0, width, height);
+                    break;
+            }
             // Draw crosshair
             Pen p = new Pen(Color.Black);
             g.DrawLine(p, width / 2, 0, width / 2, height);
