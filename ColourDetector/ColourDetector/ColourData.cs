@@ -83,6 +83,7 @@ namespace ColourDetector
         /// http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
         /// http://en.wikipedia.org/wiki/List_of_colors:_G%E2%80%93M
         /// http://en.wikipedia.org/wiki/List_of_colors:_N%E2%80%93Z
+        /// These were last updated 2014-05-01
         /// </summary>
         /// <remarks>
         /// This should only be called if there is a failure to load

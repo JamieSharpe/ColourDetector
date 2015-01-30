@@ -39,6 +39,10 @@
             this.cbSaveCol = new System.Windows.Forms.CheckBox();
             this.lblUpdateFreq = new System.Windows.Forms.Label();
             this.numUpdateFreq = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpdateFreq)).BeginInit();
             this.SuspendLayout();
@@ -103,13 +107,13 @@
             // llblInfo
             // 
             this.llblInfo.AutoSize = true;
-            this.llblInfo.LinkArea = new System.Windows.Forms.LinkArea(57, 11);
+            this.llblInfo.LinkArea = new System.Windows.Forms.LinkArea(58, 12);
             this.llblInfo.Location = new System.Drawing.Point(12, 102);
             this.llblInfo.Name = "llblInfo";
             this.llblInfo.Size = new System.Drawing.Size(172, 42);
             this.llblInfo.TabIndex = 4;
             this.llblInfo.TabStop = true;
-            this.llblInfo.Text = "This application is open source\nand can be found on this GitHub\npage.";
+            this.llblInfo.Text = "This application is open source\r\nand can be found on this GitHub\r\npage.";
             this.llblInfo.UseCompatibleTextRendering = true;
             this.llblInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblInfo_LinkClicked);
             // 
@@ -172,11 +176,50 @@
             0});
             this.numUpdateFreq.ValueChanged += new System.EventHandler(this.numUpdateFreq_ValueChanged);
             // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(12, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(171, 2);
+            this.label1.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 155);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Program: Colour Picker";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 168);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Version: 1.0.0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 181);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(108, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Author: Jamie Sharpe";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(195, 147);
+            this.ClientSize = new System.Drawing.Size(195, 201);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblUpdateFreq);
             this.Controls.Add(this.numUpdateFreq);
             this.Controls.Add(this.lblSaveCol);
@@ -215,5 +258,9 @@
         private System.Windows.Forms.CheckBox cbSaveCol;
         private System.Windows.Forms.Label lblUpdateFreq;
         private System.Windows.Forms.NumericUpDown numUpdateFreq;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

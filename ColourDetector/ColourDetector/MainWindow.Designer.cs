@@ -405,6 +405,7 @@
             this.Name = "MainWindow";
             this.Text = "Colour Detector";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.gbColour.ResumeLayout(false);
             this.gbColour.PerformLayout();

@@ -80,7 +80,9 @@ namespace ColourDetector
         /// <param name="e"></param>
         private void llblInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
+            //Console.WriteLine(e.Link.LinkData.ToString());
+            //System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
+            System.Diagnostics.Process.Start("https://github.com/JamieSharpe/ColourDetector");
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace ColourDetector
 {
@@ -9,6 +10,30 @@ namespace ColourDetector
     public partial class MainWindow : Form
     {
         readonly private Detector detector = new Detector();
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
+
+        [DllImport("user32.dll")]
+        static extern bool UnhookWindowsHookEx(IntPtr hInstance);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr CallNextHookEx(IntPtr idHook, int nCode, int wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr LoadLibrary(string lpFileName);
+
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+        const int WH_KEYBOARD_LL = 13;
+        const int WM_KEYUP = 0x100;
+
+        private LowLevelKeyboardProc _proc = hookProc;
+
+        private static IntPtr hhook = IntPtr.Zero;
 
         /// <summary>
         /// Default constructor.
@@ -94,6 +119,7 @@ namespace ColourDetector
 
             cbZoomLevel.DataSource = detector.ZoomLevels;
             tmrUpdate.Start();
+            SetHook();
         }
 
         /// <summary>
@@ -126,6 +152,43 @@ namespace ColourDetector
         private void cbZoomLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             detector.ZoomLevel = (int)cbZoomLevel.SelectedItem;
+        }
+
+        public void SetHook()
+        {
+            IntPtr hInstance = LoadLibrary("User32");
+            hhook = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, hInstance, 0);
+        }
+
+        public static void UnHook()
+        {
+            UnhookWindowsHookEx(hhook);
+        }
+
+        public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
+        {
+            if (code >= 0 && wParam == (IntPtr) WM_KEYUP)
+            {
+                Console.WriteLine(lParam);
+                int vkCode = Marshal.ReadInt32(lParam);
+
+                Console.WriteLine(vkCode);
+                if (vkCode.ToString() == "113")
+                {
+                    Console.WriteLine("You pressed a F2");
+                }
+                return (IntPtr) 1;
+            }
+            else
+            {
+                return CallNextHookEx(hhook, code, (int) wParam, lParam);
+            }
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UnHook();
+            UnregisterHotKey(this.Handle, 0); // Unregister hotkey with id 0 before closing the form.
         }
     }
 }

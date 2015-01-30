@@ -199,7 +199,7 @@ namespace ColourDetector
             NativeMethods.GetCursorPos(ref mousePos);
 
             // 120 is the size of the Image panel window.
-            // 8 16 32 work for best zoom levels
+            // numbers in the power of 2 work best
             this.GetCapture(MousePos, 120, 120, this.zoomLevel);
 
             this.GetColourName();
