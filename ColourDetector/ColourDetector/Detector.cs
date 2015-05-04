@@ -245,33 +245,8 @@ namespace ColourDetector
             Graphics g = Graphics.FromImage(scaled);
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
 
-            // TODO: Less hard coded numbers.
-            // (x*2)+60
-            // (y*2)+60
-            switch (scale)
-            {
-                case 1:
-                    g.DrawImage(capture, 0, 0, width * scale, height * scale);
-                    break;
-                case 2:
-                    g.DrawImage(capture, -60, -60, width * scale, height * scale);
-                    break;
-                case 4:
-                    g.DrawImage(capture, -180, -180, width * scale, height * scale);
-                    break;
-                case 8:
-                    g.DrawImage(capture, -420, -420, width * scale, height * scale);
-                    break;
-                case 16:
-                    g.DrawImage(capture, -900, -900, width * scale, height * scale);
-                    break;
-                case 32:
-                    g.DrawImage(capture, -1860, -1860, width * scale, height * scale);
-                    break;
-                default:
-                    g.DrawImage(capture, 0, 0, width, height);
-                    break;
-            }
+            // magick number 60 is the panel width of the winForm
+            g.DrawImage(capture, -(60 * (scale - 1)), -(60 * (scale - 1)), width * scale, height * scale);
             // Draw crosshair
             Pen p = new Pen(Color.Black);
             g.DrawLine(p, width / 2, 0, width / 2, height);
