@@ -4,10 +4,16 @@ using System.IO;
 
 namespace ColourDetector
 {
+    /// <summary>
+    /// Class used to get the colour data set.
+    /// </summary>
     class ColourData
     {
+        #region Fields
         private List<KeyValuePair<string, string>> knownColours = new List<KeyValuePair<string, string>>();
+        #endregion Fields
 
+        #region Properties
         /// <summary>
         /// Gets/Sets the list of known colours.
         /// </summary>
@@ -16,7 +22,9 @@ namespace ColourDetector
             get { return this.knownColours; }
             private set { this.knownColours = value; }
         }
+        #endregion Properties
 
+        #region Constructors
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -31,7 +39,9 @@ namespace ColourDetector
                 }
             }
         }
+        #endregion Constructors
 
+        #region Methods
         /// <summary>
         /// Loads a file of known colours and imports them.
         /// </summary>
@@ -1228,5 +1238,6 @@ namespace ColourDetector
             this.KnownColours.Add(new KeyValuePair<string, string>("Zinnwaldite brown", "#2C1608"));
             this.KnownColours.Add(new KeyValuePair<string, string>("Zomp", "#39A78E"));
         }
+        #endregion Methods
     }
 }

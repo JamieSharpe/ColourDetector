@@ -6,6 +6,10 @@ using System.Drawing.Imaging;
 
 namespace ColourDetector
 {
+    /// <summary>
+    /// Class used to detect the colour at
+    /// a specific area of the screen.
+    /// </summary>
     internal class Detector : INotifyPropertyChanged
     {
         #region Fields

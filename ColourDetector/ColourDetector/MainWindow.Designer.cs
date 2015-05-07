@@ -66,6 +66,7 @@
             this.pbZoom = new System.Windows.Forms.PictureBox();
             this.cbZoomLevel = new System.Windows.Forms.ComboBox();
             this.lblZoom = new System.Windows.Forms.Label();
+            this.tmrKeyState = new System.Windows.Forms.Timer(this.components);
             this.gbColour.SuspendLayout();
             this.gbColourX.SuspendLayout();
             this.gbColourInfo.SuspendLayout();
@@ -381,6 +382,11 @@
             this.lblZoom.TabIndex = 23;
             this.lblZoom.Text = "Zoom Level:";
             // 
+            // tmrKeyState
+            // 
+            this.tmrKeyState.Interval = 10;
+            this.tmrKeyState.Tick += new System.EventHandler(this.tmrKeyState_Tick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,7 +411,6 @@
             this.Name = "MainWindow";
             this.Text = "Colour Detector";
             this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.gbColour.ResumeLayout(false);
             this.gbColour.PerformLayout();
@@ -459,6 +464,7 @@
         private System.Windows.Forms.PictureBox pbZoom;
         private System.Windows.Forms.ComboBox cbZoomLevel;
         private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.Timer tmrKeyState;
     }
 }
 
