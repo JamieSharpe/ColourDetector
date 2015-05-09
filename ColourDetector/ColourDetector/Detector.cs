@@ -27,7 +27,7 @@ namespace ColourDetector
         private Image screenShot = new Bitmap(25, 25, PixelFormat.Format32bppArgb);
         private readonly ColourData allColours = new ColourData();
 
-        public readonly int[] ZoomLevels = {1, 2, 4, 8, 16, 32};
+        static public readonly int[] ZoomLevels = {1, 2, 4, 8, 16, 32};
         #endregion Fields
 
         #region Properties

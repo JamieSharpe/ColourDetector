@@ -43,6 +43,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblHotKey = new System.Windows.Forms.Label();
+            this.tbHotKey = new System.Windows.Forms.TextBox();
+            this.lblZoomLevel = new System.Windows.Forms.Label();
+            this.cbZoomLevel = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpdateFreq)).BeginInit();
             this.SuspendLayout();
@@ -108,7 +112,7 @@
             // 
             this.llblInfo.AutoSize = true;
             this.llblInfo.LinkArea = new System.Windows.Forms.LinkArea(58, 12);
-            this.llblInfo.Location = new System.Drawing.Point(12, 102);
+            this.llblInfo.Location = new System.Drawing.Point(12, 158);
             this.llblInfo.Name = "llblInfo";
             this.llblInfo.Size = new System.Drawing.Size(172, 42);
             this.llblInfo.TabIndex = 4;
@@ -120,7 +124,7 @@
             // lblDivider
             // 
             this.lblDivider.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDivider.Location = new System.Drawing.Point(12, 96);
+            this.lblDivider.Location = new System.Drawing.Point(12, 152);
             this.lblDivider.Name = "lblDivider";
             this.lblDivider.Size = new System.Drawing.Size(171, 2);
             this.lblDivider.TabIndex = 5;
@@ -149,9 +153,9 @@
             this.lblUpdateFreq.AutoSize = true;
             this.lblUpdateFreq.Location = new System.Drawing.Point(12, 35);
             this.lblUpdateFreq.Name = "lblUpdateFreq";
-            this.lblUpdateFreq.Size = new System.Drawing.Size(45, 13);
+            this.lblUpdateFreq.Size = new System.Drawing.Size(67, 13);
             this.lblUpdateFreq.TabIndex = 9;
-            this.lblUpdateFreq.Text = "Update:";
+            this.lblUpdateFreq.Text = "Update (ms):";
             // 
             // numUpdateFreq
             // 
@@ -179,7 +183,7 @@
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(12, 150);
+            this.label1.Location = new System.Drawing.Point(12, 206);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 2);
             this.label1.TabIndex = 10;
@@ -187,7 +191,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 155);
+            this.label2.Location = new System.Drawing.Point(12, 211);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 11;
@@ -196,7 +200,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 168);
+            this.label3.Location = new System.Drawing.Point(12, 224);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 12;
@@ -205,17 +209,58 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 181);
+            this.label4.Location = new System.Drawing.Point(12, 237);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "Author: Jamie Sharpe";
             // 
+            // lblHotKey
+            // 
+            this.lblHotKey.AutoSize = true;
+            this.lblHotKey.Location = new System.Drawing.Point(12, 102);
+            this.lblHotKey.Name = "lblHotKey";
+            this.lblHotKey.Size = new System.Drawing.Size(78, 13);
+            this.lblHotKey.TabIndex = 14;
+            this.lblHotKey.Text = "Pause HotKey:";
+            // 
+            // tbHotKey
+            // 
+            this.tbHotKey.Location = new System.Drawing.Point(93, 99);
+            this.tbHotKey.Name = "tbHotKey";
+            this.tbHotKey.ReadOnly = true;
+            this.tbHotKey.Size = new System.Drawing.Size(90, 20);
+            this.tbHotKey.TabIndex = 15;
+            this.tbHotKey.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.tbHotKey.Leave += new System.EventHandler(this.textBox1_Leave);
+            // 
+            // lblZoomLevel
+            // 
+            this.lblZoomLevel.AutoSize = true;
+            this.lblZoomLevel.Location = new System.Drawing.Point(12, 128);
+            this.lblZoomLevel.Name = "lblZoomLevel";
+            this.lblZoomLevel.Size = new System.Drawing.Size(66, 13);
+            this.lblZoomLevel.TabIndex = 16;
+            this.lblZoomLevel.Text = "Zoom Level:";
+            // 
+            // cbZoomLevel
+            // 
+            this.cbZoomLevel.FormattingEnabled = true;
+            this.cbZoomLevel.Location = new System.Drawing.Point(93, 125);
+            this.cbZoomLevel.Name = "cbZoomLevel";
+            this.cbZoomLevel.Size = new System.Drawing.Size(90, 21);
+            this.cbZoomLevel.TabIndex = 17;
+            this.cbZoomLevel.SelectionChangeCommitted += new System.EventHandler(this.cbZoomLevel_SelectionChangeCommitted);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(195, 201);
+            this.ClientSize = new System.Drawing.Size(197, 260);
+            this.Controls.Add(this.cbZoomLevel);
+            this.Controls.Add(this.lblZoomLevel);
+            this.Controls.Add(this.tbHotKey);
+            this.Controls.Add(this.lblHotKey);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -262,5 +307,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblHotKey;
+        private System.Windows.Forms.TextBox tbHotKey;
+        private System.Windows.Forms.Label lblZoomLevel;
+        private System.Windows.Forms.ComboBox cbZoomLevel;
     }
 }
