@@ -13,6 +13,7 @@ namespace ColourDetector
         readonly private Detector detector = new Detector();
 
         private bool updateDetector = true;
+        private int hkFreeze = 0;
         #endregion Fields
 
         #region Properties
@@ -29,6 +30,22 @@ namespace ColourDetector
             set
             {
                 this.updateDetector = value;
+            }
+        }
+
+        /// <summary>
+        /// Used to reference the key used to stop
+        /// the colour detector updating.
+        /// </summary>
+        public int HkFreeze
+        {
+            get
+            {
+                return hkFreeze;
+            }
+            set
+            {
+                this.hkFreeze = value;
             }
         }
         #endregion Properties
@@ -56,6 +73,18 @@ namespace ColourDetector
         }
         #endregion Constructors
 
+        #region Methods
+        private void LoadSettings()
+        {
+            this.Opacity = (double)Properties.Settings.Default.Opacity;
+            this.TopMost = Properties.Settings.Default.TopMost;
+            this.tmrUpdate.Interval = Properties.Settings.Default.UpdateFreq;
+            this.HkFreeze = Properties.Settings.Default.HKFreeze;
+            Console.WriteLine("Load setting: " + Properties.Settings.Default.ZoomLevelIndex);
+            this.cbZoomLevel.SelectedIndex = Properties.Settings.Default.ZoomLevelIndex;
+        }
+        #endregion Methods
+
         #region Events
         /// <summary>
         /// Called when the form is loaded.
@@ -66,8 +95,6 @@ namespace ColourDetector
         /// <param name="e"></param>
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            this.LoadSettings();
-
             this.pnlColourView.DataBindings.Add("BackColor", detector, "Colour",
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
@@ -124,10 +151,10 @@ namespace ColourDetector
                                 false,
                                 DataSourceUpdateMode.OnPropertyChanged);
 
-            this.cbZoomLevel.DataSource = detector.ZoomLevels;
+            this.cbZoomLevel.DataSource = Detector.ZoomLevels;
+            this.LoadSettings();
             this.tmrUpdate.Start();
             this.tmrKeyState.Start();
-
         }
 
         /// <summary>
@@ -179,10 +206,12 @@ namespace ColourDetector
         /// <param name="e"></param>
         private void tmrKeyState_Tick(object sender, EventArgs e)
         {
-            int keyState = GetAsyncKeyState(0x71); // 0x71 is F2: see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
+            int keyState = GetAsyncKeyState(this.HkFreeze);
 
             // Least significant bit set: see https://msdn.microsoft.com/en-us/library/windows/desktop/ms646293%28v=vs.85%29.aspx
-            if (keyState == -32767)
+            int lsBit = -0x7FFF;
+
+            if (keyState == lsBit)
             {
                 this.UpdateDetector = !this.UpdateDetector;
                 if (this.UpdateDetector)
@@ -196,14 +225,5 @@ namespace ColourDetector
             }
         }
         #endregion Events
-
-        #region Methods
-        private void LoadSettings()
-        {
-            this.Opacity = (double)Properties.Settings.Default.Opacity;
-            this.TopMost = Properties.Settings.Default.TopMost;
-            this.tmrUpdate.Interval = Properties.Settings.Default.UpdateFreq;
-        }
-        #endregion Methods
     }
 }
