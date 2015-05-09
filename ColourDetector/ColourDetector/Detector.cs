@@ -10,7 +10,7 @@ namespace ColourDetector
     /// Class used to detect the colour at
     /// a specific area of the screen.
     /// </summary>
-    internal class Detector : INotifyPropertyChanged
+    internal class Detector : INotifyPropertyChanged, IDisposable
     {
         #region Fields
         private string redX;
@@ -238,7 +238,7 @@ namespace ColourDetector
                     int captureY = height;
                     int locationX = location.X - width/2;
                     int locationY = location.Y - height/2;
-                    int retval = NativeMethods.BitBlt(hDC, 0, 0, captureX, captureY, hSrcDC, locationX, locationY, (int)CopyPixelOperation.SourceCopy);
+                    NativeMethods.BitBlt(hDC, 0, 0, captureX, captureY, hSrcDC, locationX, locationY, (int)CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
                 }
@@ -268,7 +268,7 @@ namespace ColourDetector
             // For shades of grey
             if (this.Colour.R == this.Colour.G && this.Colour.G == this.Colour.B)
             {
-                string preShade = "";
+                string preShade;
                 if (this.Colour.R < byte.MaxValue / 2)
                 {
                     preShade = "Dark ";
@@ -289,7 +289,17 @@ namespace ColourDetector
                     break;
                 }
             }
-            this.colourName = name;
+            this.ColourName = name;
+        }
+
+        /// <summary>
+        /// Required as we created a Bitmap which
+        /// is also IDisposable, and should be
+        /// cleaned up properly.
+        /// </summary>
+        public void Dispose()
+        {
+            this.screenShot.Dispose();
         }
         #endregion Methods
 

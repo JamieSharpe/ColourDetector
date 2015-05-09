@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace ColourDetector
 {
@@ -13,7 +12,7 @@ namespace ColourDetector
         readonly private Detector detector = new Detector();
 
         private bool updateDetector = true;
-        private int hkFreeze = 0;
+        private int hkFreeze;
         #endregion Fields
 
         #region Properties
@@ -51,16 +50,7 @@ namespace ColourDetector
         #endregion Properties
 
         #region DllImports
-        /// <summary>
-        /// Used to get keyboard button state.
-        /// This is then used for global setting changes.
-        /// </summary>
-        /// <param name="vKey">The vKey to determine whether
-        /// it was pressed after a previous call to the
-        /// method.</param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        public static extern int GetAsyncKeyState(Int32 vKey);
+
         #endregion DllImports
 
         #region Constructors
@@ -80,7 +70,6 @@ namespace ColourDetector
             this.TopMost = Properties.Settings.Default.TopMost;
             this.tmrUpdate.Interval = Properties.Settings.Default.UpdateFreq;
             this.HkFreeze = Properties.Settings.Default.HKFreeze;
-            Console.WriteLine("Load setting: " + Properties.Settings.Default.ZoomLevelIndex);
             this.cbZoomLevel.SelectedIndex = Properties.Settings.Default.ZoomLevelIndex;
         }
         #endregion Methods
@@ -206,10 +195,10 @@ namespace ColourDetector
         /// <param name="e"></param>
         private void tmrKeyState_Tick(object sender, EventArgs e)
         {
-            int keyState = GetAsyncKeyState(this.HkFreeze);
+            int keyState = NativeMethods.GetAsyncKeyState(this.HkFreeze);
 
             // Least significant bit set: see https://msdn.microsoft.com/en-us/library/windows/desktop/ms646293%28v=vs.85%29.aspx
-            int lsBit = -0x7FFF;
+            const int lsBit = -0x7FFF;
 
             if (keyState == lsBit)
             {
