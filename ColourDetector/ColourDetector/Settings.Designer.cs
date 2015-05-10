@@ -193,9 +193,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 211);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.Size = new System.Drawing.Size(126, 13);
             this.label2.TabIndex = 11;
-            this.label2.Text = "Program: Colour Picker";
+            this.label2.Text = "Program: Colour Detector";
             // 
             // label3
             // 
