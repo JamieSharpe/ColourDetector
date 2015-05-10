@@ -255,7 +255,10 @@ namespace ColourDetector
             Pen p = new Pen(Color.Black);
             g.DrawLine(p, width / 2, 0, width / 2, height);
             g.DrawLine(p, 0, height / 2, width, height / 2);
+            this.ScreenShot.Dispose();
             this.ScreenShot = scaled;
+            g.Dispose();
+            capture.Dispose();
         }
 
         /// <summary>
